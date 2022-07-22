@@ -1,9 +1,23 @@
-import Canvas from "render.js";
-import Input from "input.js";
+/*
 
-import Game from "game.js";
-import Player from "player.js";
-import Fruit from "fruit.js";
+    ./main.js
+
+    Entrypoint. This is going to manage
+    the whole game process.
+
+    Copyright (c) 2022 Matthew Zhou,
+    all right reserved. Licensed in MIT License.
+
+*/
+
+// Input Output.
+import Canvas from "io/render.js";
+import Input from "io/input.js";
+
+// Game.
+import Environ from "game/environ.js";
+import Player from "game/player.js";
+import Fruit from "game/fruit.js";
  
 class Main {
 
@@ -17,7 +31,7 @@ class Main {
         this.input = new Input(this.config.inputSystem);
 
         // Game stuff.
-        this.game = new Game();
+        this.environ = new Environ();
         this.player = new Player(this.config.playerColor, this.config.playerGrowth, playerSpeed)
         this.fruit = new Fruit(this.config.fruitColor);
 
@@ -32,6 +46,7 @@ class Main {
 
     prepareGame() {
 
+        // Event listener.
         window.addEventListener("resize", this.canvas.resize());
         window.addEventListener("keydown", this.input.keyDown());
         window.addEventListener("keyup", this.input.keyUp());

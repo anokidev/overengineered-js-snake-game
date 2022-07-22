@@ -1,9 +1,11 @@
 /*
 
-    source.js
+    ./io/canvas.js
 
-    Copyright (c) 2022 Matthew Zhou
-    All right reserved
+    This file handles the canvas.
+
+    Copyright (c) 2022 Matthew Zhou,
+    all right reserved. Licensed in MIT License.
 
 */
 
