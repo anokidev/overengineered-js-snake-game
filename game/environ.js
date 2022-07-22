@@ -9,3 +9,9 @@
     all right reserved. Licensed in MIT License.
 
 */
+
+class Environ {
+
+    constructor() {};
+
+};

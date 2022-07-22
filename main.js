@@ -26,14 +26,20 @@ class Main {
         // Config.
         this.config = config;
 
-        // Technical stuff.
+        // Canvas.
         this.canvas = new Canvas(this.config.canvasID, this.config.renderFPS);
-        this.input = new Input(this.config.inputSystem);
 
-        // Game stuff.
+        // Environ.
         this.environ = new Environ();
-        this.player = new Player(this.config.playerColor, this.config.playerGrowth, playerSpeed)
+
+        // Player.
+        this.player = new Player(this.config.playerColor, this.config.playerGrowth, playerSpeed);
+
+        // Fruit.
         this.fruit = new Fruit(this.config.fruitColor);
+
+        // Input.
+        this.input = new Input(this.config.inputSystem, this.player.move);
 
     };
 
@@ -47,12 +53,14 @@ class Main {
     prepareGame() {
 
         // Event listener.
-        window.addEventListener("resize", this.canvas.resize());
-        window.addEventListener("keydown", this.input.keyDown());
-        window.addEventListener("keyup", this.input.keyUp());
+        window.addEventListener("resize", this.canvas.resize);
+        window.addEventListener("keyup", this.input.keyPress);
 
         // When updating the canvas, call updateGame().
         this.canvas.update(this.updateGame);
+
+        // Load background.
+        this.canvas.loadBackground(this.config.backgroundColor);
 
     };
 
@@ -74,18 +82,18 @@ window.addEventListener('load', (event) => {
     // Configs.
     let configs = {
 
-        canvasID : "canvas",             // Canvas ID.
+        canvasID : "canvas",                // Canvas ID.
     
-        backgroundColor : "#000000",     // Background color.
-        fruitColor : "#ff3503",          // Fruit color.
+        backgroundColor : "#000000",        // Background color.
+        fruitColor : "#ff3503",             // Fruit color.
     
-        playerSpeed : 1,                 // Player movement speed.
-        playerColor : "#03ff0b",         // Player color.
-        playerGrowth : "1",              // Player growth speed.
+        playerSpeed : 1,                    // Player movement speed.
+        playerColor : "#03ff0b",            // Player color.
+        playerGrowth : "1",                 // Player growth speed.
     
-        renderFPS : "1",                 // FPS.
+        renderFPS : "1",                    // FPS.
     
-        inputSystem : [87, 65, 83, 68]   // Keybindings. Each number represents a keyboard button.
+        inputSystem : [119, 97, 115, 100]   // Keybindings. Each number represents a keyboard button.
     
     };
 
