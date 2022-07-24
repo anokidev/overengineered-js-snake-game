@@ -21,7 +21,7 @@ class Main {
         this.config = config;
 
         // Canvas.
-        this.canvas = new Canvas(this.config.canvas);
+        this.canvas = new Canvas(this.config.canvas.canvasID);
 
         // Game.
         this.game = new Game(this.config.game);
@@ -42,10 +42,7 @@ class Main {
         window.addEventListener("keyup", this.input.keyPress);
 
         // When updating the canvas, call updateGame().
-        this.canvas.update(this.updateGame);
-
-        // Load background.
-        this.canvas.loadBackground(this.config.backgroundColor);
+        this.canvas.linkUpdate(this.updateGame);
 
     };
 
@@ -73,16 +70,16 @@ window.addEventListener('load', (event) => {
         },
 
         game : {
-            background        : "#000000",           // Background color.
-            fruit             : "#fff3503",          // Fruit color.
+            backgroundColor   : "#000000",           // Background color.
+            fruitColor        : "#fff3503",          // Fruit color.
             startingLength    : 2,                   // Player length,
-            color             : "#03ff0b",           // Player color.
+            playerColor       : "#03ff0b",           // Player color.
             growthSpeed       : 1,                   // Player growth speed.
             movementSpeed     : 1,                   // Player movement speed.
             keybindings       : [119, 97, 115, 100], // Input keybindings.
             startingPosition  : [0, 0],              // Starting position.
             startingDirection : "right",             // Starting direction.
-            resolution        : "fitxfit"            // Resolution.
+            resolution        : ["fit", "fit"]       // Resolution.
         }
 
     };

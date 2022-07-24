@@ -30,7 +30,7 @@ class Game {
         this.player  = canvas.newGrids(
             config.startingPosition, 
             config.startingLength,
-            config.startingPosition
+            config.playerColor
         );
 
     };

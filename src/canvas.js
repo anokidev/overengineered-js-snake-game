@@ -9,42 +9,84 @@
 
 */
 
-class Main {
+// Creates a new exception type:
+function resolutionError(){ 
+    Error.apply(this, arguments); this.name = "ResolutionError"; 
+};
 
-    constructor() {
+FatalError.prototype = Object.create(Error.prototype);
 
-        // Canvas and context.
-        this.canvas = document.querySelector("#canvas");
-        this.context = this.canvas.getContext("2d");
+// Context class.
+class Context {
 
-        // Set size.
-        this.context.canvas.width = window.innerWidth;
-        this.context.canvas.height = window.innerHeight;
+    constructor(background, resolution, context) {
 
-        // Size alias.
-        this.contextWidth = this.context.canvas.width;
-        this.contextHeight = this.context.canvas.height;
-
-        // Fill the canvas.
-        this.context.fillRect(0, 0, this.contextWidth, this.contextHeight);
-
-        // Divide the canvas into grids.
-        this.gridWidth = this.contextWidth / 10;
-        this.gridHeight = this.contextHeight / 10;
-
-    };
-
-    background(color) {
+        this.context = context;
 
         // Set background.
-        this.context.fillStyle = color;
+        this.context.fillStyle = background;
+
+        // Initial variable.
+        this.width  = 0;
+        this.height = 0;
+
+        // Check if the resolution config is correct.
+        if (resolution.length != 2) {
+            throw new resolutionError("Invalid resolution config!");
+        };
+
+        // Check the width config.
+        if (resolution[0] == "fit") {
+            this.width = window.innerWidth;
+        };
+
+        // Check the height config.
+        if (resolution[1] == "fit") {
+            this.height = window.innerHeight;
+        };
+
+        // Fill the context.
+        this.context.fillRect(0, 0, this.width, this.height);
 
     };
 
-    run(backgroundColor) {
+};
 
-        // Initialize the context.
-        this.background(backgroundColor);
+// Canvas class.
+class Canvas {
+
+    constructor(id) {
+
+        this.canvas = document.querySelector(id);
+        this.context = this.canvas.getContext("2d");
+
+    };
+
+    newContext(background, resolution) {
+
+        context = new Context(background, resolution, this.context);
+
+        return context;
+
+    };
+
+    newGrids(position, length, color, direction) {
+
+        // Draw the tail part.
+        this.drawGrid(position[0], position[1]);
+
+        // Parse the length.
+        if (length != 1) {
+            const parsedLength = length - 1;
+        } else {
+            const parsedLength = 1;
+        };
+
+        // Draw the rest of the player's body.
+        if (direction == "X") {
+            
+    
+        };
 
     };
 
