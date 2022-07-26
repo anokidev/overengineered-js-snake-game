@@ -52,6 +52,22 @@ class Context {
 
 };
 
+class Grids {
+
+    constructor(position, length, color, direction) {
+
+        if (direction == "x") {
+
+            while (i <= length - position[0]) {
+                this.drawGrid(position[0], position[1]);
+            };
+
+        };
+
+    };
+
+};
+
 // Canvas class.
 class Canvas {
 
@@ -70,22 +86,13 @@ class Canvas {
 
     };
 
-    newGrids(position, length, color, direction) {
+    newGrids(position, length, color) {
 
         // Draw the tail part.
-        this.drawGrid(position[0], position[1]);
+        while (i <= length) {
 
-        // Parse the length.
-        if (length != 1) {
-            const parsedLength = length - 1;
-        } else {
-            const parsedLength = 1;
-        };
+            this.drawGrid()
 
-        // Draw the rest of the player's body.
-        if (direction == "X") {
-            
-    
         };
 
     };
